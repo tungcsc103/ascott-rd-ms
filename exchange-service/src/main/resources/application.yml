@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: exchange-service
+
+  datasource:
+    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=master
+    username: sa
+    password: cls@2018
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 20
+      minimum-idle: 3
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
