@@ -13,3 +13,8 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka
+
+# must add to enable hytrix for feign
+feign:
+  hystrix:
+    enabled: true

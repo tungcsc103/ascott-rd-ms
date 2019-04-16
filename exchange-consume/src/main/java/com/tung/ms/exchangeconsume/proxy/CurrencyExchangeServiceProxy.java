@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.tung.ms.exchangeconsume.dto.CurrencyConversionBean;
 
-@FeignClient(name = "exchange-service")
+@FeignClient(name = "exchange-service", fallback = CurrencyExchangeServiceProxyFallback.class)
 @RibbonClient(name = "exchange-service") // load balancer
 public interface CurrencyExchangeServiceProxy {
 
   @GetMapping("/currency-exchange/from/{from}/to/{to}")
   public CurrencyConversionBean retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
+
+  @GetMapping("/currency-exchange-exception/from/{from}/to/{to}")
+  public CurrencyConversionBean retrieveExchangeValueException(@PathVariable("from") String from,
+      @PathVariable("to") String to);
 }

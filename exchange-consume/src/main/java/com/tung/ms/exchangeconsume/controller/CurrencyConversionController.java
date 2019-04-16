@@ -45,9 +45,22 @@ public class CurrencyConversionController {
   public CurrencyConversionBean convertCurrencyFeign(@PathVariable String from, @PathVariable String to,
       @PathVariable BigDecimal quantity) {
 
+    LOG.info("Start consumer service");
     CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
 
-    LOG.info("{}", response);
+    return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
+        quantity.multiply(response.getConversionMultiple()), response.getPort());
+  }
+
+  @GetMapping("/currency-converter-exception/from/{from}/to/{to}/quantity/{quantity}")
+  public CurrencyConversionBean convertCurrencyFeignException(@PathVariable String from, @PathVariable String to,
+      @PathVariable BigDecimal quantity) {
+
+    LOG.info("Start consumer service with exception");
+    CurrencyConversionBean response = proxy.retrieveExchangeValueException(from, to);
+    if (response.getId() == null) {
+      return response;
+    }
 
     return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
         quantity.multiply(response.getConversionMultiple()), response.getPort());
