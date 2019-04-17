@@ -17,6 +17,7 @@ import com.tung.ms.exchangeconsume.dto.CurrencyConversionBean;
 import com.tung.ms.exchangeconsume.proxy.CurrencyExchangeServiceProxy;
 
 @RestController
+// @RequestMapping("/exchange-consume/")
 public class CurrencyConversionController {
 
   private Logger LOG = LoggerFactory.getLogger(this.getClass());
