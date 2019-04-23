@@ -1,0 +1,23 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///Volumes/data/Personal/configuration-files
+          #uri: https://github.com/alejandro-du/vaadin-microservices-demo-config.git
+          search-paths:
+          - '{application}'
+
+eureka:
+ client:
+   serviceUrl:
+     defaultZone: http://localhost:8761/eureka/
+   registryFetchIntervalSeconds: 1
+ instance:
+   leaseRenewalIntervalInSeconds: 1

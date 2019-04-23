@@ -17,6 +17,16 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+      
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        greetings-in:
+          destination: greetings
+          contentType: application/json
 
 server:
   port: 8000
