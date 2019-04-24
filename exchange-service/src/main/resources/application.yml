@@ -26,6 +26,7 @@ spring:
       bindings:
         greetings-in:
           destination: greetings
+          group: greetingGroup
           contentType: application/json
 
 server:
